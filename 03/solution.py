@@ -21,8 +21,23 @@ def solve(data):
         res += VALUES[next(iter(common))]
     return res
 
+def solve2(data):
+    res = 0
+    i = 0
+    while i < len(data):
+        r1 = set(data[i].strip())
+        r2 = set(data[i+1].strip())
+        r3 = set(data[i+2].strip())
+        common = r1.intersection(r2).intersection(r3)
+        assert len(common) == 1
+        res += VALUES[next(iter(common))]
+        i += 3
+    return res
+
+
 
 with open(Path(__file__).parent / "input") as f:
     data = f.readlines()
 
 print(solve(data))
+print(solve2(data))
